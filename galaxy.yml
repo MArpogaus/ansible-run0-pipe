@@ -1,0 +1,12 @@
+namespace: marpogaus
+name: run0_pipe
+version: 1.0.0
+readme: README.md
+authors:
+  - Marcel Arpogaus (@MArpogaus)
+description: Ansible become plugin for run0 --pipe, so pipelining works on systemd hosts without sudo
+license:
+  - GPL-3.0-or-later
+tags: [become, run0, systemd]
+repository: https://github.com/MArpogaus/ansible-run0-pipe
+build_ignore: [.git, .gitignore]
