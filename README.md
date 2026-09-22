@@ -18,8 +18,11 @@ GPL-3.0-or-later.
 collections:
   - name: https://github.com/MArpogaus/ansible-run0-pipe.git
     type: git
-    version: main
+    version: <commit sha>
 ```
+
+Pin a commit, not a branch. A become plugin runs on the controller, inside the
+process that holds every secret.
 
 ```ini
 # ansible.cfg
@@ -60,6 +63,6 @@ without the polkit rule fails instead.
 assigns `self.success` on the instance, so the class value never takes part in
 a comparison.
 
-The colour-stripping helpers exist because a terminal makes run0 emit colour.
-There is no terminal here, and `SYSTEMD_COLORS=0` covers the rest.
+The colour-stripping helpers are gone. A terminal makes run0 emit colour, and
+there is no terminal here. `SYSTEMD_COLORS=0` covers the rest.
 
