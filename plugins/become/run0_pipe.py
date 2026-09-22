@@ -70,9 +70,8 @@ from ansible.plugins.become import BecomeBase
 class BecomeModule(BecomeBase):
     name = "run0_pipe"
 
-    # The delta to community.general.run0 is --pipe, require_tty and
-    # pipelining. What upstream carries and this does not is left out on
-    # purpose: README.md, "Delta to upstream", lists each one.
+    # README.md, "Delta to upstream", says what differs from
+    # community.general.run0 and why.
     prompt = ""
     fail = ("==== AUTHENTICATION FAILED ====",)
     require_tty = False
