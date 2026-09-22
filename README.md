@@ -39,7 +39,7 @@ Two things on the host make it work:
 
 Both are host configuration, not part of this collection. The
 `run0_pipe_policy` role in
-[ansible-base](https://github.com/MArpogaus/home-server-core) installs the
+[home-server-core](https://github.com/MArpogaus/home-server-core) installs the
 SELinux module; the polkit rule is placed by Ignition there.
 
 ## Options
