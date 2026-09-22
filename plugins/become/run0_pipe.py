@@ -70,21 +70,9 @@ from ansible.plugins.become import BecomeBase
 class BecomeModule(BecomeBase):
     name = "run0_pipe"
 
-    # The delta to community.general.run0 is three lines: --pipe below,
-    # require_tty and pipelining. Everything upstream carries that is missing
-    # here is missing on purpose, so that a reader does not restore it:
-    #
-    # - `prompt`: upstream expects run0 to ask for a password. --pipe gives the
-    #   child no terminal, so polkit cannot ask and never writes a prompt. A
-    #   host without the polkit rule fails instead, which is what the
-    #   DOCUMENTATION above tells the operator to configure.
-    # - `success`: upstream sets it as a class attribute, where it is dead.
-    #   BecomeBase.__init__ assigns self.success = '' and then
-    #   'BECOME-SUCCESS-%s' % self._id, so the instance attribute shadows the
-    #   class one and upstream's marker is never compared against anything.
-    # - the remove_ansi_codes helpers and the three check_* overrides: they
-    #   exist because a TTY makes run0 emit colour. There is no TTY here, and
-    #   SYSTEMD_COLORS=0 below covers the rest.
+    # The delta to community.general.run0 is --pipe, require_tty and
+    # pipelining. What upstream carries and this does not is left out on
+    # purpose: README.md, "Delta to upstream", lists each one.
     prompt = ""
     fail = ("==== AUTHENTICATION FAILED ====",)
     require_tty = False

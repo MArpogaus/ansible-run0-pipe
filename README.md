@@ -46,3 +46,21 @@ SELinux module; the polkit rule is placed by Ignition there.
 
 `become_user`, `become_exe` and `become_flags`, with the usual variables
 (`ansible_become_user`, ...) and the ini section `run0_pipe_become_plugin`.
+
+## Delta to upstream
+
+This plugin adds `--pipe`, and sets `require_tty = False` and
+`pipelining = True`. Three things that `community.general.run0` carries are
+left out on purpose.
+
+`prompt` expects run0 to ask for a password. `--pipe` gives the child no
+terminal, so polkit cannot ask and writes no prompt. A host without the polkit
+rule fails instead.
+
+`success` is a class attribute upstream, where it is dead. `BecomeBase`
+assigns `self.success` on the instance, so the class value never takes part in
+a comparison.
+
+The colour-stripping helpers exist because a terminal makes run0 emit colour.
+There is no terminal here, and `SYSTEMD_COLORS=0` covers the rest.
+
